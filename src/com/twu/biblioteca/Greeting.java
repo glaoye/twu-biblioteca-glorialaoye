@@ -1,14 +1,9 @@
 package com.twu.biblioteca;
 
 public class Greeting {
-    private String message;
+    private String message = "";
 //constructor, setters, getters
-    public Greeting(String message){
-        setMessage(message);
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    public Greeting(){
     }
 
     public String getMessage(){
