@@ -4,7 +4,7 @@ public class BibliotecaApp {
 
     public static void main(String[] args) {
 
-        Greeting greeting = new Greeting("");
+        Greeting greeting = new Greeting();
         greeting.printMessage();
     }
 }

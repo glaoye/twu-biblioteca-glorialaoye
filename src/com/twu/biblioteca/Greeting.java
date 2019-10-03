@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
 public class Greeting {
-    private String message = "";
+    private String message = "Welcome to BiblioTeca. Your one-stop-shop for great book titles in Bangalore!";
 //constructor, setters, getters
     public Greeting(){
     }

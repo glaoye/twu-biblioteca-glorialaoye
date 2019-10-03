@@ -11,11 +11,11 @@ import static org.junit.Assert.assertThat;
 public class BibliotecaTest {
 
     @Test
-    public void shouldReturn() {
+    public void shouldReturnCorrectWelcomeMessage() {
         //given
         String correctWelcomeMessage = "Welcome to BiblioTeca. Your one-stop-shop for great book titles in Bangalore!";
         //when
-        Greeting greeting = new Greeting("");
+        Greeting greeting = new Greeting();
         String actualWelcomeMessage = greeting.getMessage();
         //then
         assertThat(actualWelcomeMessage, is(correctWelcomeMessage));
