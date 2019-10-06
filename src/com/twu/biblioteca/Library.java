@@ -31,7 +31,8 @@ public class Library {
                     this.showBooks();
                     break;
                 case 2:
-
+                    checkOutBook();
+                    break;
                 default:
                     throw new InputMismatchException();
             }
@@ -47,5 +48,11 @@ public class Library {
             System.out.printf("%-50s%-50s%-50s\n",books[i],authors[i],yearPublished[i]);
         }
 
+    }
+
+    public void checkOutBook(){
+        System.out.println("From the list below, choose which book you would like to check-out by pressing the corresponding number followed by the \"Enter\" key.\n" +
+                " If you would like to quit, press 0");
+        showBooks();
     }
 }
