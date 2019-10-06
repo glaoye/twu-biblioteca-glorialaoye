@@ -17,7 +17,7 @@ public class Library {
     public void showMenu() throws InputMismatchException {
         System.out.println("Please select an option by typing in the corresponding number.\nWhen you have finished, press the \"Enter\" key.");
         for(int i=0; i<menuOptions.length; i++){
-            System.out.println(i + ". "+menuOptions[i]);
+            System.out.println((i+1) + ". "+menuOptions[i]);
         }
 
         Scanner scanner = new Scanner(System.in);
@@ -26,6 +26,8 @@ public class Library {
 
             switch(choice){
                 case 0:
+                    System.exit(0);
+                case 1:
                     this.showBooks();
                     break;
                 default:
