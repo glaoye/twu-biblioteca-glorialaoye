@@ -30,7 +30,6 @@ public class Library {
                     break;
                 default:
                     throw new InputMismatchException();
-                    
             }
         }catch(InputMismatchException e){
             System.out.println("Please select a valid option!");
