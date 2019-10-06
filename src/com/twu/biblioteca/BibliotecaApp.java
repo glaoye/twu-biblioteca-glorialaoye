@@ -6,5 +6,8 @@ public class BibliotecaApp {
 
         Greeting greeting = new Greeting();
         greeting.printMessage();
+        System.out.print("\n");
+        Library library = new Library();
+        library.showBooks();
     }
 }
