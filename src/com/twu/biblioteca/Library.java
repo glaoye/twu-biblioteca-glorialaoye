@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import java.util.Scanner;
+
 public class Library {
     private String[] books = new String[]{"The Adventure of Rayman", "Crash Bandicoot"};
     private String[] authors = new String[]{"Amanda Adams", "Bjorn Boris"};
@@ -8,7 +10,13 @@ public class Library {
     private String[] menuOptions = new String[]{"List of books"};
     public void showMenu(){
         System.out.println("Please select an option by typing in the corresponding number.\nWhen you have finished, press the \"Enter\" key.");
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
 
+        switch(choice){
+            case 1:
+                this.showBooks();
+        }
 
 
     }
