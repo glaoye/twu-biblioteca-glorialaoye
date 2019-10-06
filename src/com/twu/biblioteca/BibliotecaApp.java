@@ -8,6 +8,6 @@ public class BibliotecaApp {
         greeting.printMessage();
         System.out.print("\n");
         Library library = new Library();
-        library.showBooks();
+        library.showMenu();
     }
 }
