@@ -13,7 +13,7 @@ import static org.junit.Assert.assertThat;
 
 
 public class BibliotecaTest {
-    
+
     @Test
     public void shouldReturnCorrectWelcomeMessage(){
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();

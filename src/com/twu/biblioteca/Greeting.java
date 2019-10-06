@@ -11,6 +11,6 @@ public class Greeting {
     }
 //method to print greeting
     public void printMessage(){
-        System.out.println(message);
+        System.out.print(message);
     }
 }
