@@ -7,7 +7,7 @@ public class Library {
     private String message = "Welcome to BiblioTeca. Your one-stop-shop for great book titles in Bangalore!";
     private String[] books = new String[]{"The Adventure of Rayman", "Crash Bandicoot"};
     private String[] authors = new String[]{"Amanda Adams", "Bjorn Boris"};
-    private int[] yearPublished = new int[]{1066, 2019};
+    private String[] yearPublished = new String[]{"1066", "2019"};
     private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book"};
 
     public void showWelcomeMessage(){
@@ -47,12 +47,32 @@ public class Library {
         for(int i =0; i<books.length; i++){
             System.out.printf("%-50s%-50s%-50s\n",books[i],authors[i],yearPublished[i]);
         }
-
+//        System.out.println("\n\n\n\n");
     }
 
     public void checkOutBook(){
         System.out.println("From the list below, choose which book you would like to check-out by pressing the corresponding number followed by the \"Enter\" key.\n" +
-                " If you would like to quit, press 0");
+                "If you would like to quit, press 0");
         showBooks();
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        String selectedBook = books[choice-1];
+        books = removeFromArray(choice-1,books);
+        authors = removeFromArray(choice-1,authors);
+        yearPublished = removeFromArray(choice-1,yearPublished);
+        System.out.println("\n\n\n\n");
+    }
+
+    private String[] removeFromArray(int index, String[] array){
+
+        String[] newArray = new String[array.length-1];
+        for(int i=0, k=0; i<array.length;i++){
+            if(i==index){
+                continue;
+            }
+            newArray[k]=array[i];
+            k++;
+        }
+        return newArray;
     }
 }
