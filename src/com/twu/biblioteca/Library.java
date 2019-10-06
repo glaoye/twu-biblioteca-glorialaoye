@@ -8,7 +8,7 @@ public class Library {
     private String[] books = new String[]{"The Adventure of Rayman", "Crash Bandicoot"};
     private String[] authors = new String[]{"Amanda Adams", "Bjorn Boris"};
     private int[] yearPublished = new int[]{1066, 2019};
-    private String[] menuOptions = new String[]{"Quit Biblioteca","List of books"};
+    private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book"};
 
     public void showWelcomeMessage(){
         System.out.print(message);
@@ -30,6 +30,8 @@ public class Library {
                 case 1:
                     this.showBooks();
                     break;
+                case 2:
+
                 default:
                     throw new InputMismatchException();
             }
