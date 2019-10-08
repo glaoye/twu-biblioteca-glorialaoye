@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ public class Library {
     private String[] authors = new String[]{"Amanda", "Bjorn", "Chris"};
     private String[] yearPublished = new String[]{"1066", "1067", "1068"};
     private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book", "Return a book"};
+    private String[] checkedOutBooks = new String[books.length];
 
     public void showWelcomeMessage(){
         System.out.print(message);
@@ -83,9 +85,10 @@ public class Library {
         System.out.println("Please type in the name of the book you would like to return:");
         Scanner scanner = new Scanner(System.in);
         String returnedBook = scanner.nextLine();
+
     }
 
-    private String[] removeFromArray(int index, String[] array){
+    private static String[] removeFromArray(int index, String[] array){
 
         String[] newArray = new String[array.length-1];
         for(int i=0, k=0; i<array.length;i++){
@@ -97,4 +100,12 @@ public class Library {
         }
         return newArray;
     }
+
+    public static String[] addToArray(String addition, String[] array){
+        array = Arrays.copyOf(array, array.length + 1);
+        array[array.length - 1] = addition;
+        return array;
+    }
 }
+
+
