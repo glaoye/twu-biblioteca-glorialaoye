@@ -19,9 +19,6 @@ public class Library {
     }
 
     public void showMenu() throws InputMismatchException {
-        System.out.print("Checked out books: ");
-        showCheckedOut();
-        System.out.println("\n\n\n\n");
         System.out.println("Please select an option by typing in the corresponding number.\nWhen you have finished, press the \"Enter\" key.");
         for(int i=0; i<menuOptions.length; i++){
             System.out.println((i) + ". "+menuOptions[i]);
@@ -98,6 +95,20 @@ public class Library {
         System.out.println("Please type in the name of the book you would like to return:");
         Scanner scanner = new Scanner(System.in);
         String returnedBook = scanner.nextLine();
+        for(int i = 0; i<checkedOutBooks.length;i++){
+            if(returnedBook.equals(checkedOutBooks[i])){
+
+                books = addToArray(returnedBook, books);
+                authors = addToArray(checkedOutAuthors[i], authors);
+                yearPublished=addToArray(checkedOutYearPublished[i],yearPublished);
+
+                checkedOutBooks = removeFromArray(i, checkedOutBooks);
+                checkedOutAuthors=removeFromArray(i, checkedOutAuthors);
+                checkedOutYearPublished=removeFromArray(i, checkedOutYearPublished);
+
+                break;
+            }
+        }
 
     }
 
