@@ -91,9 +91,15 @@ public class Library {
     }
 
     public void returnBook(){
+        if(checkedOutBooks.length==0){
+            System.out.println("You have no checked out books to return.");
+            return;
+        }
+
         System.out.println("\n\nPlease type in the name of the book you would like to return:");
         Scanner scanner = new Scanner(System.in);
         String returnedBook = scanner.nextLine();
+
         for(int i = 0; i<checkedOutBooks.length;i++){
             if(returnedBook.equals(checkedOutBooks[i])){
 
@@ -108,6 +114,8 @@ public class Library {
                 System.out.println("Thank you for returning the book.");
                 break;
             }
+            System.out.println("This is not a valid book to return.");
+
         }
 
     }
