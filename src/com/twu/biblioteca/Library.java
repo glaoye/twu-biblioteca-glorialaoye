@@ -32,6 +32,7 @@ public class Library {
                     break;
                 case 2:
                     checkOutBook();
+                    System.out.println("Thank you, enjoy your book!");
                     break;
                 default:
                     throw new InputMismatchException();
