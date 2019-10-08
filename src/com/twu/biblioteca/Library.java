@@ -8,7 +8,7 @@ public class Library {
     private String[] books = new String[]{"Alpha", "Beta", "Charlie"};
     private String[] authors = new String[]{"Amanda", "Bjorn", "Chris"};
     private String[] yearPublished = new String[]{"1066", "1067", "1068"};
-    private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book"};
+    private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book", "Return a book"};
 
     public void showWelcomeMessage(){
         System.out.print(message);
@@ -32,6 +32,9 @@ public class Library {
                     break;
                 case 2:
                     checkOutBook();
+                    break;
+                case 3:
+                    returnBook();
                     break;
                 default:
                     throw new InputMismatchException();
@@ -74,6 +77,12 @@ public class Library {
             System.out.println("Sorry, that book is not available!");
             System.out.println("\n\n");
         }
+    }
+
+    public void returnBook(){
+        System.out.println("Please type in the name of the book you would like to return:");
+        Scanner scanner = new Scanner(System.in);
+        String returnedBook = scanner.nextLine();
     }
 
     private String[] removeFromArray(int index, String[] array){
