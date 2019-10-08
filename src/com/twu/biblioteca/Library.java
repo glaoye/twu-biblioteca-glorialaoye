@@ -32,7 +32,6 @@ public class Library {
                     break;
                 case 2:
                     checkOutBook();
-                    System.out.println("Thank you, enjoy your book!");
                     break;
                 default:
                     throw new InputMismatchException();
@@ -57,12 +56,24 @@ public class Library {
                 "If you would like to quit, press 0");
         showBooks();
         Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
-        String selectedBook = books[choice-1];
-        books = removeFromArray(choice-1,books);
-        authors = removeFromArray(choice-1,authors);
-        yearPublished = removeFromArray(choice-1,yearPublished);
-        System.out.println("\n\n\n\n");
+        try {
+            int choice = scanner.nextInt();
+            String selectedBook = books[choice - 1];
+            books = removeFromArray(choice - 1, books);
+            authors = removeFromArray(choice - 1, authors);
+            yearPublished = removeFromArray(choice - 1, yearPublished);
+            System.out.println("\n\n");
+            System.out.println("Thank you, enjoy your book!");
+            System.out.println("\n\n");
+        }catch(InputMismatchException e){
+            System.out.println("\n\n");
+            System.out.println("Sorry, that book is not available!");
+            System.out.println("\n\n");
+        }catch(ArrayIndexOutOfBoundsException e) {
+            System.out.println("\n\n");
+            System.out.println("Sorry, that book is not available!");
+            System.out.println("\n\n");
+        }
     }
 
     private String[] removeFromArray(int index, String[] array){
