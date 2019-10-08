@@ -19,7 +19,7 @@ public class Library {
     }
 
     public void showMenu() throws InputMismatchException {
-        System.out.println("Please select an option by typing in the corresponding number.\nWhen you have finished, press the \"Enter\" key.");
+        System.out.println("\nPlease select an option by typing in the corresponding number.\nWhen you have finished, press the \"Enter\" key.\n");
         for(int i=0; i<menuOptions.length; i++){
             System.out.println((i) + ". "+menuOptions[i]);
         }
@@ -44,7 +44,7 @@ public class Library {
                     throw new InputMismatchException();
             }
         }catch(InputMismatchException e){
-            System.out.println("Please select a valid option!");
+            System.out.println("\nPlease select a valid option!\n");
         }
 
 
@@ -55,7 +55,6 @@ public class Library {
             System.out.print(i+1 + ". ");
             System.out.printf("%-50s%-50s%-50s\n",books[i],authors[i],yearPublished[i]);
         }
-//        System.out.println("\n\n\n\n");
     }
 
     public void checkOutBook(){
@@ -77,22 +76,22 @@ public class Library {
             yearPublished = removeFromArray(choice - 1, yearPublished);
             checkedOutYearPublished=addToArray(selectedYearPublished,checkedOutYearPublished);
 
-            System.out.println("\n\n");
+            System.out.println("\n");
             System.out.println("Thank you, enjoy your book!");
             System.out.println("\n\n");
         }catch(InputMismatchException e){
-            System.out.println("\n\n");
+            System.out.println("\n");
             System.out.println("Sorry, that book is not available!");
             System.out.println("\n\n");
         }catch(ArrayIndexOutOfBoundsException e) {
-            System.out.println("\n\n");
+            System.out.println("\n");
             System.out.println("Sorry, that book is not available!");
             System.out.println("\n\n");
         }
     }
 
     public void returnBook(){
-        System.out.println("Please type in the name of the book you would like to return:");
+        System.out.println("\n\nPlease type in the name of the book you would like to return:");
         Scanner scanner = new Scanner(System.in);
         String returnedBook = scanner.nextLine();
         for(int i = 0; i<checkedOutBooks.length;i++){
@@ -106,6 +105,7 @@ public class Library {
                 checkedOutAuthors=removeFromArray(i, checkedOutAuthors);
                 checkedOutYearPublished=removeFromArray(i, checkedOutYearPublished);
 
+                System.out.println("Thank you for returning the book.");
                 break;
             }
         }
