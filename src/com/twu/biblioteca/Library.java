@@ -6,13 +6,13 @@ import java.util.Scanner;
 
 public class Library {
     private String message = "Welcome to BiblioTeca. Your one-stop-shop for great book titles in Bangalore!";
-    private String[] books = new String[]{"Alpha", "Beta", "Charlie"};
-    private String[] authors = new String[]{"Amanda", "Bjorn", "Chris"};
-    private String[] yearPublished = new String[]{"1066", "1067", "1068"};
+
+    private Book[] books = {new Book("Alpha","Amanda","1066"),
+            new Book("Beta","Bjorn","1067"),
+            new Book("Charlie","Chris","1068")};
     private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book", "Return a book"};
-    private String[] checkedOutBooks = {};
-    private String[] checkedOutAuthors = {};
-    private String[] checkedOutYearPublished = {};
+    private Book[] checkedOutBooks = {};
+
 
     public void showWelcomeMessage(){
         System.out.print(message);
@@ -53,7 +53,7 @@ public class Library {
     public void showBooks(){
         for(int i =0; i<books.length; i++){
             System.out.print(i+1 + ". ");
-            System.out.printf("%-50s%-50s%-50s\n",books[i],authors[i],yearPublished[i]);
+            System.out.printf("%-50s%-50s%-50s\n",books[i].getTitle(),books[i].getAuthor(),books[i].getYearPublished());
         }
     }
 
@@ -64,17 +64,10 @@ public class Library {
         Scanner scanner = new Scanner(System.in);
         try {
             int choice = scanner.nextInt();
-            String selectedBook = books[choice - 1];
+            Book selectedBook = books[choice - 1];
             books = removeFromArray(choice - 1, books);
             checkedOutBooks=addToArray(selectedBook,checkedOutBooks);
 
-            String selectedAuthor = authors[choice-1];
-            authors = removeFromArray(choice - 1, authors);
-            checkedOutAuthors=addToArray(selectedAuthor,checkedOutAuthors);
-
-            String selectedYearPublished = yearPublished[choice-1];
-            yearPublished = removeFromArray(choice - 1, yearPublished);
-            checkedOutYearPublished=addToArray(selectedYearPublished,checkedOutYearPublished);
 
             System.out.println("\n");
             System.out.println("Thank you, enjoy your book!");
@@ -101,28 +94,22 @@ public class Library {
         String returnedBook = scanner.nextLine();
 
         for(int i = 0; i<checkedOutBooks.length;i++){
-            if(returnedBook.equals(checkedOutBooks[i])){
+            if(returnedBook.equals(checkedOutBooks[i].getTitle())){
 
-                books = addToArray(returnedBook, books);
-                authors = addToArray(checkedOutAuthors[i], authors);
-                yearPublished=addToArray(checkedOutYearPublished[i],yearPublished);
+                books = addToArray(checkedOutBooks[i], books);
 
                 checkedOutBooks = removeFromArray(i, checkedOutBooks);
-                checkedOutAuthors=removeFromArray(i, checkedOutAuthors);
-                checkedOutYearPublished=removeFromArray(i, checkedOutYearPublished);
 
                 System.out.println("Thank you for returning the book.");
                 break;
             }
             System.out.println("This is not a valid book to return.");
-
         }
-
     }
 
-    private static String[] removeFromArray(int index, String[] array){
+    private static Book[] removeFromArray(int index, Book[] array){
 
-        String[] newArray = new String[array.length-1];
+        Book[] newArray = new Book[array.length-1];
         for(int i=0, k=0; i<array.length;i++){
             if(i==index){
                 continue;
@@ -133,7 +120,7 @@ public class Library {
         return newArray;
     }
 
-    public static String[] addToArray(String addition, String[] array){
+    public static Book[] addToArray(Book addition, Book[] array){
         array = Arrays.copyOf(array, array.length + 1);
         array[array.length - 1] = addition;
         return array;
@@ -142,7 +129,7 @@ public class Library {
     public void showCheckedOut(){
         for(int i = 0; i<checkedOutBooks.length; i++){
             System.out.print(i+1 + ". ");
-            System.out.printf("%-50s%-50s%-50s\n",checkedOutBooks[i],checkedOutAuthors[i],checkedOutYearPublished[i]);
+            System.out.printf("%-50s%-50s%-50s\n",checkedOutBooks[i]);
         }
     }
 }
