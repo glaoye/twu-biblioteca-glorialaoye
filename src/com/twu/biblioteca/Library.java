@@ -10,13 +10,18 @@ public class Library {
     private String[] authors = new String[]{"Amanda", "Bjorn", "Chris"};
     private String[] yearPublished = new String[]{"1066", "1067", "1068"};
     private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book", "Return a book"};
-    private String[] checkedOutBooks = new String[books.length];
+    private String[] checkedOutBooks = {};
+    private String[] checkedOutAuthors = {};
+    private String[] checkedOutYearPublished = {};
 
     public void showWelcomeMessage(){
         System.out.print(message);
     }
 
     public void showMenu() throws InputMismatchException {
+        System.out.print("Checked out books: ");
+        showCheckedOut();
+        System.out.println("\n\n\n\n");
         System.out.println("Please select an option by typing in the corresponding number.\nWhen you have finished, press the \"Enter\" key.");
         for(int i=0; i<menuOptions.length; i++){
             System.out.println((i) + ". "+menuOptions[i]);
@@ -65,8 +70,16 @@ public class Library {
             int choice = scanner.nextInt();
             String selectedBook = books[choice - 1];
             books = removeFromArray(choice - 1, books);
+            checkedOutBooks=addToArray(selectedBook,checkedOutBooks);
+
+            String selectedAuthor = authors[choice-1];
             authors = removeFromArray(choice - 1, authors);
+            checkedOutAuthors=addToArray(selectedAuthor,checkedOutAuthors);
+
+            String selectedYearPublished = yearPublished[choice-1];
             yearPublished = removeFromArray(choice - 1, yearPublished);
+            checkedOutYearPublished=addToArray(selectedYearPublished,checkedOutYearPublished);
+
             System.out.println("\n\n");
             System.out.println("Thank you, enjoy your book!");
             System.out.println("\n\n");
@@ -105,6 +118,13 @@ public class Library {
         array = Arrays.copyOf(array, array.length + 1);
         array[array.length - 1] = addition;
         return array;
+    }
+
+    public void showCheckedOut(){
+        for(int i = 0; i<checkedOutBooks.length; i++){
+            System.out.print(i+1 + ". ");
+            System.out.printf("%-50s%-50s%-50s\n",checkedOutBooks[i],checkedOutAuthors[i],checkedOutYearPublished[i]);
+        }
     }
 }
 
