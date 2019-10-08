@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Library {
     private String message = "Welcome to BiblioTeca. Your one-stop-shop for great book titles in Bangalore!";
-    private String[] books = new String[]{"The Adventure of Rayman", "Crash Bandicoot"};
-    private String[] authors = new String[]{"Amanda Adams", "Bjorn Boris"};
-    private String[] yearPublished = new String[]{"1066", "2019"};
+    private String[] books = new String[]{"Alpha", "Beta", "Charlie"};
+    private String[] authors = new String[]{"Amanda", "Bjorn", "Chris"};
+    private String[] yearPublished = new String[]{"1066", "1067", "1068"};
     private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book"};
 
     public void showWelcomeMessage(){
@@ -45,6 +45,7 @@ public class Library {
 
     public void showBooks(){
         for(int i =0; i<books.length; i++){
+            System.out.print(i+1 + ". ");
             System.out.printf("%-50s%-50s%-50s\n",books[i],authors[i],yearPublished[i]);
         }
 //        System.out.println("\n\n\n\n");
