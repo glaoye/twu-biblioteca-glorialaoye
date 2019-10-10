@@ -5,7 +5,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Library {
-
+    private User user;
+    private boolean librarian;
     private String message = "Welcome to BiblioTeca. Your one-stop-shop for great book titles in Bangalore!";
     private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book", "Return a book", "List of movies", "Check-out a movie"};
 
@@ -19,6 +20,13 @@ public class Library {
             new Movie("Ch", "1920", "Connor", "10")};
     private Movie[] checkedOutMovies = {};
 
+    private void setLibrarian(boolean librarian){
+        this.librarian = librarian;
+    }
+
+    public boolean getLibrarian(){
+        return librarian;
+    }
 
     public void showWelcomeMessage(){
         System.out.println(message);
@@ -32,8 +40,20 @@ public class Library {
         scanner = new Scanner(System.in);
         String password = scanner.nextLine();
 
-        User user = new User(libraryNumber, password);
+        user = new User(libraryNumber, password);
         System.out.println("Login successful!");
+    }
+    public void askIfLibrarian(){
+        System.out.println("Are you a librarian?");
+        System.out.println("1. Yes\n2. No\n");
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        if(choice==1){
+            setLibrarian(true);
+        }
+        else{
+            setLibrarian(false);
+        }
     }
 
     public void showMenu() throws InputMismatchException {
@@ -112,7 +132,6 @@ public class Library {
             System.out.println("\n\n");
         }
     }
-
     public void checkOutMovie(){
         System.out.println("From the list below, choose which movie you would like to check-out by pressing the corresponding number followed by the \"Enter\" key.\n" +
                 "If you would like to quit, press 0");
@@ -199,6 +218,10 @@ public class Library {
         array = Arrays.copyOf(array, array.length + 1);
         array[array.length - 1] = addition;
         return array;
+    }
+
+    public void showUserCheckOuts(){
+        System.out.printf("Library Number: %d", user.libraryNumber);
     }
 
     public void showCheckedOut(){
