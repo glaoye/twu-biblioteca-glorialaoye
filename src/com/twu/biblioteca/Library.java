@@ -11,14 +11,12 @@ public class Library {
     private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book", "Return a book", "List of movies", "Check-out a movie"};
 
     private Book[] books = {new Book("Alpha","Amanda","1066"),
-            new Book("Beta","Bjorn","1067"),
-            new Book("Charlie","Chris","1068")};
-    private Book[] checkedOutBooks = {};
+                                        new Book("Beta","Bjorn","1067"),
+                                        new Book("Charlie","Chris","1068")};
 
     private Movie[] movies = {new Movie("Al", "1900", "Adams", "5"),
-            new Movie("Be", "1910", "Beatrice", "0"),
-            new Movie("Ch", "1920", "Connor", "10")};
-    private Movie[] checkedOutMovies = {};
+                                        new Movie("Be", "1910", "Beatrice", "0"),
+                                        new Movie("Ch", "1920", "Connor", "10")};
 
     private void setLibrarian(boolean librarian){
         this.librarian = librarian;
@@ -33,6 +31,7 @@ public class Library {
     }
 
     public void login(){
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter your library number:");
         int libraryNumber = scanner.nextInt();
@@ -43,6 +42,7 @@ public class Library {
         user = new User(libraryNumber, password);
         System.out.println("Login successful!");
     }
+
     public void askIfLibrarian(){
         System.out.println("Are you a librarian?");
         System.out.println("1. Yes\n2. No\n");
@@ -115,8 +115,8 @@ public class Library {
         try {
             int choice = scanner.nextInt();
             Book selectedBook = books[choice - 1];
-            books = removeFromArray(choice - 1, books);
-            checkedOutBooks=addToArray(selectedBook,checkedOutBooks);
+            books = removeFromBookArray(choice - 1, books);
+            user.setCheckedOutBooks(addToArray(selectedBook,user.getCheckedOutBooks()));
 
 
             System.out.println("\n");
@@ -140,8 +140,8 @@ public class Library {
         try {
             int choice = scanner.nextInt();
             Movie selectedMovie = movies[choice - 1];
-            movies = removeMovieFromArray(choice - 1, movies);
-            checkedOutMovies=addMovieToArray(selectedMovie,checkedOutMovies);
+            movies = removeFromMovieArray(choice - 1, movies);
+            user.setCheckedOutMovies(addMovieToArray(selectedMovie, user.getCheckedOutMovies()));
 
 
             System.out.println("\n");
@@ -160,7 +160,7 @@ public class Library {
 
 
     public void returnBook(){
-        if(checkedOutBooks.length==0){
+        if(user.getCheckedOutBooks().length==0){
             System.out.println("You have no checked out books to return.");
             return;
         }
@@ -169,12 +169,12 @@ public class Library {
         Scanner scanner = new Scanner(System.in);
         String returnedBook = scanner.nextLine();
 
-        for(int i = 0; i<checkedOutBooks.length;i++){
-            if(returnedBook.equals(checkedOutBooks[i].getTitle())){
+        for(int i = 0; i<user.getCheckedOutBooks().length;i++){
+            if(returnedBook.equals(user.getCheckedOutBooks()[i].getTitle())){
 
-                books = addToArray(checkedOutBooks[i], books);
+                books = addToArray(user.getCheckedOutBooks()[i], books);
 
-                checkedOutBooks = removeFromArray(i, checkedOutBooks);
+                user.setCheckedOutBooks(removeFromBookArray(i, user.getCheckedOutBooks()));
 
                 System.out.println("Thank you for returning the book.");
                 break;
@@ -183,7 +183,7 @@ public class Library {
         }
     }
 
-    private static Book[] removeFromArray(int index, Book[] array){
+    private static Book[] removeFromBookArray(int index, Book[] array){
 
         Book[] newArray = new Book[array.length-1];
         for(int i=0, k=0; i<array.length;i++){
@@ -195,7 +195,7 @@ public class Library {
         }
         return newArray;
     }
-    private static Movie[] removeMovieFromArray(int index, Movie[] array){
+    private static Movie[] removeFromMovieArray(int index, Movie[] array){
 
         Movie[] newArray = new Movie[array.length-1];
         for(int i=0, k=0; i<array.length;i++){
@@ -220,16 +220,15 @@ public class Library {
         return array;
     }
 
-    public void showUserCheckOuts(){
-        System.out.printf("Library Number: %d", user.libraryNumber);
-    }
-
     public void showCheckedOut(){
-        for(int i = 0; i<checkedOutBooks.length; i++){
-            System.out.print(i+1 + ". ");
-            System.out.printf("%-50s%-50s%-50s\n",checkedOutBooks[i]);
+        if(user.getCheckedOutBooks().length==0){
+            System.out.println("this user has no books to return");
+            return;
         }
+        for(int i = 0; i<user.getCheckedOutBooks().length; i++){
+            System.out.print(i+1 + ". ");
+            System.out.printf("%-50s%-50s%-50s\n",user.getCheckedOutBooks()[i].getTitle(),user.getCheckedOutBooks()[i].getAuthor(),user.getCheckedOutBooks()[i].getYearPublished());
+        }
+
     }
 }
-
-

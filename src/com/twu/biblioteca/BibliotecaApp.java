@@ -11,6 +11,7 @@ public class BibliotecaApp {
         }
         else{
             library.login();
+
             System.out.print("\n\n");
             while(true) {
                 library.showMenu();
@@ -19,5 +20,3 @@ public class BibliotecaApp {
 
     }
 }
-//call user 'get' methods in main method, simple
-//OR have separate Librarian class, main method creates Librarian, which has method to get. I feel this is more secure
