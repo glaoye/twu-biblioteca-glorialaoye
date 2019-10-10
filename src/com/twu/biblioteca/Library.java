@@ -8,7 +8,7 @@ public class Library {
     private User user;
     private boolean librarian;
     private String message = "Welcome to BiblioTeca. Your one-stop-shop for great book titles in Bangalore!";
-    private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book", "Return a book", "List of movies", "Check-out a movie"};
+    private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book", "Return a book", "List of movies", "Check-out a movie", "See checked-out books", "See credentials"};
 
     private Book[] books = {new Book("Alpha","Amanda","1066"),
                                         new Book("Beta","Bjorn","1067"),
@@ -21,7 +21,6 @@ public class Library {
     private void setLibrarian(boolean librarian){
         this.librarian = librarian;
     }
-
     public boolean getLibrarian(){
         return librarian;
     }
@@ -83,6 +82,10 @@ public class Library {
                     break;
                 case 5:
                     checkOutMovie();
+                    break;
+                case 6:
+                    System.out.println("The following are the checked out books for user: "+user.getLibraryNumber());
+                    showCheckedOut();
                     break;
                 default:
                     throw new InputMismatchException();

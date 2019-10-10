@@ -13,6 +13,10 @@ public class User {
         this.password=password;
     }
 
+    public int getLibraryNumber() {
+        return libraryNumber;
+    }
+
     public Book[] getCheckedOutBooks(){
         return checkedOutBooks;
     }
