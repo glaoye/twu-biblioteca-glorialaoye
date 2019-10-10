@@ -31,6 +31,8 @@ public class Library {
         System.out.println("Please enter your password:");
         scanner = new Scanner(System.in);
         String password = scanner.nextLine();
+
+        User user = new User(libraryNumber, password);
         System.out.println("Login successful!");
     }
 
