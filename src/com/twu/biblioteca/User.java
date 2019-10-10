@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class User {
     private int libraryNumber;
-    private String password;
+    public String password;
     private Book[] checkedOutBooks ={};
     private Movie[] checkedOutMovies = {};
 

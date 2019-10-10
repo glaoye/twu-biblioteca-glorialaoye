@@ -5,8 +5,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Library {
+    private User[] existingUsers = {new User(0000001, "aaaa"), new User(0000002, "bbbb")};
     private User user;
     private boolean librarian;
+    private boolean loggedIn=false;
     private String message = "Welcome to BiblioTeca. Your one-stop-shop for great book titles in Bangalore!";
     private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book", "Return a book", "List of movies", "Check-out a movie", "See checked-out books", "See credentials"};
 
@@ -34,13 +36,30 @@ public class Library {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter your library number:");
         int libraryNumber = scanner.nextInt();
-        System.out.println("Please enter your password:");
-        scanner = new Scanner(System.in);
-        String password = scanner.nextLine();
+        for(int i=0;i<existingUsers.length;i++){
+            if(libraryNumber==existingUsers[i].getLibraryNumber()){
+                System.out.println("Please enter your password:");
+                scanner = new Scanner(System.in);
+                String password = scanner.nextLine();
 
-        user = new User(libraryNumber, password);
-        System.out.println("Login successful!");
+                if(password.equals(existingUsers[i].password)){
+                    user = existingUsers[i];
+                    System.out.println("Login successful!");
+                    loggedIn=true;
+                    break;
+                }else{
+                    System.out.println("Incorrect password");
+                    login();
+                }
+                break;
+            }
+        }
+        if(loggedIn==false){
+            System.out.println("User does not exist, please try again");
+            login();
+        }
     }
+
 
     public void askIfLibrarian(){
         System.out.println("Are you a librarian?");
@@ -234,4 +253,6 @@ public class Library {
         }
 
     }
+
+
 }
