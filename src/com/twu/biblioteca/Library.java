@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Library {
-    private User[] existingUsers = {new User(0000001, "aaaa"), new User(0000002, "bbbb")};
+    private User[] existingUsers = {new User(1000001, "aaaa"), new User(1000002, "bbbb")};
     private User user;
     private boolean librarian;
     private boolean loggedIn=false;
@@ -25,6 +25,10 @@ public class Library {
     }
     public boolean getLibrarian(){
         return librarian;
+    }
+
+    public User[] getExistingUsers() {
+        return existingUsers;
     }
 
     public void showWelcomeMessage(){
@@ -68,6 +72,7 @@ public class Library {
         int choice = scanner.nextInt();
         if(choice==1){
             setLibrarian(true);
+            showAllCheckedOut();
         }
         else{
             setLibrarian(false);
@@ -102,10 +107,7 @@ public class Library {
                 case 5:
                     checkOutMovie();
                     break;
-                case 6:
-                    System.out.println("The following are the checked out books for user: "+user.getLibraryNumber());
-                    showCheckedOut();
-                    break;
+
                 default:
                     throw new InputMismatchException();
             }
@@ -242,8 +244,8 @@ public class Library {
         return array;
     }
 
-    public void showCheckedOut(){
-        if(user.getCheckedOutBooks().length==0){
+    public void showCheckedOut(int index){
+        if(getExistingUsers()[index].getCheckedOutBooks().length==0){
             System.out.println("this user has no books to return");
             return;
         }
@@ -254,5 +256,13 @@ public class Library {
 
     }
 
+
+    public void showAllCheckedOut(){
+        for(int i = 0; i<existingUsers.length;i++){
+            System.out.printf("User %d has to return the following books:\n", existingUsers[i].getLibraryNumber());
+            showCheckedOut(i);
+            System.out.println("\n\n");
+        }
+    }
 
 }

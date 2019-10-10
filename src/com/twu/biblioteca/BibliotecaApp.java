@@ -6,17 +6,14 @@ public class BibliotecaApp {
         Library library = new Library();
         library.showWelcomeMessage();
         library.askIfLibrarian();
-        if(library.getLibrarian() == true){
-            System.out.println("Welcome, librarian");
-        }
-        else{
-            library.login();
 
-            System.out.print("\n\n");
-            while(true) {
-                library.showMenu();
-            }
+        library.login();
+
+        System.out.print("\n\n");
+        while(true) {
+            library.showMenu();
         }
+
 
     }
 }
