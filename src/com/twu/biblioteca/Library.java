@@ -46,6 +46,7 @@ public class Library {
                     break;
                 case 4:
                     showMovies();
+                    break;
                 default:
                     throw new InputMismatchException();
             }
@@ -63,7 +64,10 @@ public class Library {
         }
     }
     public void showMovies(){
-
+        for(int i = 0; i<movies.length; i++){
+            System.out.print(i+1 + ". ");
+            System.out.printf("%-50s%-50s%-50s%-50s\n",movies[i].getName(),movies[i].getYear(),movies[i].getDirector(), movies[i].getRating());
+        }
     }
 
     public void checkOutBook(){
