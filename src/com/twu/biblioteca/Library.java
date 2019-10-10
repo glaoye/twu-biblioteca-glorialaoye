@@ -6,12 +6,16 @@ import java.util.Scanner;
 
 public class Library {
     private String message = "Welcome to BiblioTeca. Your one-stop-shop for great book titles in Bangalore!";
+    private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book", "Return a book", "List of movies"};
 
     private Book[] books = {new Book("Alpha","Amanda","1066"),
             new Book("Beta","Bjorn","1067"),
             new Book("Charlie","Chris","1068")};
-    private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book", "Return a book"};
     private Book[] checkedOutBooks = {};
+
+    private Movie[] movies = {new Movie("Al", "1900", "Adams", "5"),
+            new Movie("Be", "1910", "Beatrice", "0"),
+            new Movie("Ch", "1920", "Connor", "10")};
 
 
     public void showWelcomeMessage(){
@@ -40,6 +44,8 @@ public class Library {
                 case 3:
                     returnBook();
                     break;
+                case 4:
+                    showMovies();
                 default:
                     throw new InputMismatchException();
             }
@@ -55,6 +61,9 @@ public class Library {
             System.out.print(i+1 + ". ");
             System.out.printf("%-50s%-50s%-50s\n",books[i].getTitle(),books[i].getAuthor(),books[i].getYearPublished());
         }
+    }
+    public void showMovies(){
+
     }
 
     public void checkOutBook(){
