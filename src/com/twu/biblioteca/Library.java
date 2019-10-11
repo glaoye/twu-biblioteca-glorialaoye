@@ -5,12 +5,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Library {
-    private User[] existingUsers = {new User(1000001, "aaaa"), new User(1000002, "bbbb")};
+    private User[] existingUsers = {new User(1000001, "aaaa", "adam@email.com", 07111111111),
+            new User(1000002, "bbbb", "bernie@email.com", 07222222222)};
     private User user;
     private boolean librarian;
     private boolean loggedIn=false;
     private String message = "Welcome to BiblioTeca. Your one-stop-shop for great book titles in Bangalore!";
-    private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book", "Return a book", "List of movies", "Check-out a movie", "See checked-out books", "See credentials"};
+    private String[] menuOptions = new String[]{"Quit Biblioteca","List of books","Check-out a book", "Return a book", "List of movies", "Check-out a movie", "See credentials"};
 
     private Book[] books = {new Book("Alpha","Amanda","1066"),
                                         new Book("Beta","Bjorn","1067"),
@@ -107,7 +108,9 @@ public class Library {
                 case 5:
                     checkOutMovie();
                     break;
-
+                case 6:
+                    seeCredentials();
+                    break;
                 default:
                     throw new InputMismatchException();
             }
@@ -182,6 +185,9 @@ public class Library {
         }
     }
 
+    public void seeCredentials(){
+        System.out.printf("User: %d\nE-mail address: %s\nPhone number: %d", user.getLibraryNumber(),user.getEmail(),user.getTelephone());
+    }
 
     public void returnBook(){
         if(user.getCheckedOutBooks().length==0){
